@@ -8,7 +8,7 @@ spec:
     namespace: my-env
     server: https://kubernetes.default.svc
   source:
-    path: k3s-test
+    path: k3s-test/applications
     repoURL: https://github.com/MaryiaDevOpsRoom/argocd-basic-setup.git
     targetRevision: HEAD
   project: default

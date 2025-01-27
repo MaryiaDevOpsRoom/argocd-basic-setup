@@ -1,0 +1,32 @@
+replicaCount: 1
+
+
+image:
+  repository: mashabrauer/pastr
+  tag: main
+  pullPolicy: IfNotPresent
+
+
+service:
+  type: LoadBalancer
+  port: 3000
+
+
+resources: {}
+  
+persistence:
+  enabled: true
+  size: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  mountPath: /app
+  subPath: data.db
+
+
+env:
+  PASTR_HOST: "http://localhost:3000"
+  PASTR_KEY_LENGTH: "4"
+
+
+
+

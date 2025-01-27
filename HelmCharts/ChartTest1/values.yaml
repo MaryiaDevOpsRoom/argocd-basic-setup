@@ -1,0 +1,35 @@
+replicaCount: 3  # Increased replica count for production.
+
+
+image:
+  repository: mashabrauer/pastr
+  tag: main
+  pullPolicy: IfNotPresent
+
+
+service:
+  type: LoadBalancer
+  port: 3000
+
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
+
+
+persistence:
+  enabled: true
+  size: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  mountPath: /app
+  subPath: data.db
+
+
+env:
+  PASTR_HOST: "http://localhost:3000"
+  PASTR_KEY_LENGTH: "10"  # Longer keys for production.
